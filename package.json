@@ -1,0 +1,33 @@
+{
+  "name": "react-learing",
+  "version": "1.0.0",
+  "description": "This is react app learning purpose",
+  "keywords": [
+    "React",
+    "Javascript",
+    "Typescript",
+    "Learning",
+    "Html",
+    "css",
+    "scss",
+    "Design"
+  ],
+  "homepage": "https://github.com/Mutti-u-rehman/react-self-learning-doc#readme",
+  "bugs": {
+    "url": "https://github.com/Mutti-u-rehman/react-self-learning-doc/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mutti-u-rehman/react-self-learning-doc.git"
+  },
+  "license": "ISC",
+  "author": "Mutti u rehman",
+  "type": "commonjs",
+  "scripts": {
+    "start": "parcel index.html",
+    "test": "jest"
+  },
+  "dependencies": {
+    "parcel": "^2.16.4"
+  }
+}
