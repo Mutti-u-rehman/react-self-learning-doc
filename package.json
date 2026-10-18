@@ -20,6 +20,9 @@
     "type": "git",
     "url": "git+https://github.com/Mutti-u-rehman/react-self-learning-doc.git"
   },
+  "browserslist": [
+    "last 2 versions"
+  ],
   "license": "ISC",
   "author": "Mutti u rehman",
   "type": "commonjs",
@@ -28,6 +31,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "parcel": "^2.16.4"
+    "parcel": "^2.16.4",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   }
 }
