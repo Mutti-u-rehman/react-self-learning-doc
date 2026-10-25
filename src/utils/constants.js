@@ -1,0 +1,1 @@
+export const listRestaurants = "/v1/listRestaurants";
