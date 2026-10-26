@@ -1,12 +1,72 @@
 
 import Search from "./../search/Search";
 import RestaurantCard from "../restaurantCard/RestaurantCard";
-import { listOfRestaurants } from "../../utils/static-data";
-import { useState } from "react";
+import { restaurantsApiUrl } from "../../utils/constants";
+import { useEffect, useState } from "react";
 import "./Body.scss";
+import Shimmer from "../shimmer/Shimmer";
 
 const Body = () => {
-    const [restaurantList, setRestaurantList] = useState(listOfRestaurants);
+    const [allRestaurants, setAllRestaurants] = useState([]);
+    const [restaurantList, setRestaurantList] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState("");
+
+    // useEffect(() => {
+    //     const controller = new AbortController();
+
+    //     const loadRestaurants = async () => {
+    //         try {
+    //             const response = await fetch(restaurantsApiUrl, {
+    //                 signal: controller.signal,
+    //             });
+    //             if (!response.ok) {
+    //                 throw new Error(`Request failed (${response.status})`);
+    //             }
+
+    //             const restaurants = await response.json();
+    //             if (!Array.isArray(restaurants)) {
+    //                 throw new Error("The restaurant API returned an invalid response.");
+    //             }
+
+    //             setAllRestaurants(restaurants);
+    //             setRestaurantList(restaurants);
+    //         } catch (fetchError) {
+    //             if (fetchError.name !== "AbortError") {
+    //                 setError(fetchError.message || "Could not load restaurants.");
+    //             }
+    //         } finally {
+    //             if (!controller.signal.aborted) {
+    //                 setIsLoading(false);
+    //             }
+    //         }
+    //     };
+
+    //     loadRestaurants();
+    //     return () => controller.abort();
+    // }, []);
+
+
+    useEffect(() => {
+        const fetchRestaurants = async() =>{
+            
+            const data = await fetch(restaurantsApiUrl);
+            const json = await data.json();
+            setAllRestaurants(json);
+            setRestaurantList(json);
+            setIsLoading(false);
+        } 
+
+        fetchRestaurants();
+    }, []);
+
+    const handleSearch = (searchInput) => {
+        const filteredRestaurants = allRestaurants.filter((restaurant) =>
+            restaurant.name.toLowerCase().includes(searchInput.toLowerCase())
+        );
+        setRestaurantList(filteredRestaurants);
+    }
+
     return (
         <main className="body">
             <section className="body-intro">
@@ -15,17 +75,16 @@ const Body = () => {
                 <p className="intro-copy">
                     Discover local spots and delicious dishes worth staying in for.
                 </p>
-                <Search />
+                <Search onSearch={handleSearch} />
             </section>
 
             <section className="filter-section">
                 {/* <Filter /> */}
 
                 <button className="filter-button" type="button" onClick={() => {
-                    const topRatedRestaurants = listOfRestaurants.filter(restaurant => restaurant.rating >= 4.7);
-                    console.log("Top Rated Restaurants:", topRatedRestaurants);
+                    const topRatedRestaurants = allRestaurants.filter(restaurant => restaurant.rating >= 4.7);
                     setRestaurantList(topRatedRestaurants);
-                }}>
+                }} disabled={isLoading || Boolean(error)}>
                     Filter Top Rated Restaurants
                 </button>
             </section>
@@ -35,13 +94,23 @@ const Body = () => {
                         <p className="eyebrow">HANDPICKED FOR YOU</p>
                         <h2>Popular restaurants</h2>
                     </div>
-                    <span className="restaurant-count">{restaurantList.length} places</span>
+                    <span className="restaurant-count">
+                        {isLoading ? "Loading..." : `${restaurantList.length} places`}
+                    </span>
                 </div>
-                <div className="restaurant-list">
-                    {restaurantList.map((restaurant) => (
-                        <RestaurantCard key={restaurant.id} restaurant={restaurant} />
-                    ))}
-                </div>
+                {error ? (
+                    <p role="alert">Unable to load restaurants: {error}</p>
+                ) : (
+                    <div className="restaurant-list">
+                        {restaurantList.map((restaurant) => (
+                            <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+                        ))}
+
+                        {isLoading && (
+                            <Shimmer />
+                        )}
+                    </div>
+                )}
             </section>
         </main>
     );

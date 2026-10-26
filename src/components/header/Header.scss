@@ -1,47 +1,38 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap");
 
 .header {
-    align-items: center;
-    background: rgba(255, 255, 255, 0.94);
-    border-bottom: 1px solid #f0eee9;
-    display: flex;
-    justify-content: space-between;
-    min-height: 76px;
-    padding: 0 clamp(20px, 7vw, 112px);
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid #eeeae4;
+    min-height: 72px;
     position: sticky;
     top: 0;
     z-index: 10;
-    backdrop-filter: blur(14px);
+    backdrop-filter: blur(12px);
+}
+
+.header-inner {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1440px;
+    min-height: 72px;
+    padding: 0 clamp(20px, 7vw, 112px);
 }
 
 .logo-container {
-    align-items: center;
     color: #20221f;
-    display: inline-flex;
-    gap: 10px;
+    display: inline-block;
+    flex: 0 0 auto;
     text-decoration: none;
-}
-
-.logo {
-    align-items: center;
-    background: #e65c36;
-    border-radius: 12px;
-    color: #fff;
-    display: inline-flex;
-    font-family: "Manrope", sans-serif;
-    font-size: 20px;
-    font-weight: 800;
-    height: 38px;
-    justify-content: center;
-    letter-spacing: -1px;
-    width: 38px;
 }
 
 .brand-name {
     font-family: "Manrope", sans-serif;
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 800;
-    letter-spacing: -1.5px;
+    letter-spacing: -2px;
+    line-height: 1;
 }
 
 .brand-name span {
@@ -51,10 +42,10 @@
 .nav-items {
     align-items: center;
     display: flex;
-    gap: clamp(20px, 3vw, 42px);
+    gap: clamp(16px, 2.4vw, 34px);
 }
 
-.nav-items a {
+.nav-link {
     color: #555851;
     font-size: 14px;
     font-weight: 600;
@@ -62,44 +53,70 @@
     transition: color 160ms ease;
 }
 
-.nav-items a:hover {
-    color: #e65c36;
+.nav-link:hover {
+    color: #cf4e2c;
 }
 
-.nav-items .cart-link {
+.header-action {
     align-items: center;
-    color: #252723;
+    background: #e95d38;
+    border-radius: 20px;
+    color: #fff;
     display: inline-flex;
-    gap: 8px;
-}
-
-.cart-link span {
-    align-items: center;
-    background: #fff0ea;
-    border-radius: 50%;
-    color: #d84e2a;
-    display: inline-flex;
-    font-size: 11px;
-    height: 23px;
+    font-size: 13px;
+    font-weight: 700;
     justify-content: center;
-    width: 23px;
+    min-height: 40px;
+    padding: 0 18px;
+    text-decoration: none;
+    transition: background 160ms ease, transform 160ms ease;
+}
+
+.header-action:hover {
+    background: #d94d2d;
+    transform: translateY(-1px);
+}
+
+.logo-container:focus-visible,
+.nav-link:focus-visible,
+.header-action:focus-visible {
+    outline: 3px solid rgba(230, 92, 54, 0.45);
+    outline-offset: 3px;
 }
 
 @media (max-width: 520px) {
-    .header {
-        min-height: 66px;
-        padding: 0 18px;
+    .header-inner {
+        min-height: 64px;
+        padding: 0 20px;
+    }
+
+    .brand-name {
+        font-size: 26px;
     }
 
     .nav-items {
         gap: 14px;
     }
 
-    .nav-items a {
+    .nav-link {
         font-size: 12px;
     }
 
-    .nav-items a:nth-child(2) {
+    .nav-link--about,
+    .nav-link--partners {
         display: none;
+    }
+
+    .header-action {
+        font-size: 12px;
+        min-height: 36px;
+        padding: 0 13px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav-link,
+    .header-action {
+        transition: none;
     }
 }

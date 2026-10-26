@@ -1,21 +1,24 @@
 .restaurant-card {
     background: #fff;
-    border: 1px solid #efeee9;
-    border-radius: 17px;
+    border: 1px solid #ece9e3;
+    border-radius: 18px;
     min-width: 0;
     overflow: hidden;
+    box-shadow: 0 3px 12px rgba(38, 35, 27, 0.035);
     transition: box-shadow 180ms ease, transform 180ms ease;
 }
 
 .restaurant-card:hover {
-    box-shadow: 0 14px 34px rgba(38, 35, 27, 0.1);
-    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(38, 35, 27, 0.09);
+    transform: translateY(-3px);
 }
 
 .restaurant-image {
     aspect-ratio: 1.7 / 1;
     background: linear-gradient(135deg, #f5e8dc, #f8d5c3);
     display: block;
+    height: 170px;
+    max-height: 170px;
     object-fit: cover;
     width: 100%;
 }
@@ -71,7 +74,8 @@
 
 @media (max-width: 520px) {
     .restaurant-image {
-        aspect-ratio: 1.9 / 1;
+        height: 180px;
+        max-height: 180px;
     }
 
     .restaurant-details {

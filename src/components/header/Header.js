@@ -1,16 +1,20 @@
+import "./Header.scss";
+
 const Header = () => {
     return (
         <header className="header">
-            <a className="logo-container" href="/" aria-label="Bite — home">
-                <span className="logo" aria-hidden="true">B</span>
-                <span className="brand-name">bite<span>.</span></span>
-            </a>
+            <div className="header-inner">
+                <a className="logo-container" href="/" aria-label="Bite home">
+                    <span className="brand-name">bite<span>.</span></span>
+                </a>
 
-            <nav className="nav-items" aria-label="Main navigation">
-                <a href="#restaurants">Explore</a>
-                <a href="#about">About</a>
-                <a className="cart-link" href="#cart">Cart <span>0</span></a>
-            </nav>
+                <nav className="nav-items" aria-label="Main navigation">
+                    <a className="nav-link" href="#restaurants">Discover</a>
+                    <a className="nav-link nav-link--about" href="#about">Our story</a>
+                    <a className="nav-link nav-link--partners" href="#restaurants">For restaurants</a>
+                    <a className="header-action" href="#restaurants">Start exploring</a>
+                </nav>
+            </div>
         </header>
     );
 }
