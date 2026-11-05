@@ -33,7 +33,8 @@
   "dependencies": {
     "parcel": "^2.16.4",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1"
+    "react-dom": "^19.3.1",
+    "react-router-dom": "6.30.2"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.16.4"
