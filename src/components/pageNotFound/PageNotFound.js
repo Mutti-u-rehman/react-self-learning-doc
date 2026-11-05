@@ -1,9 +1,6 @@
 import "./PageNotFound.scss";
-import { useRouteError } from "react-router-dom";
 
 const PageNotFound = () => {
-    const err = useRouteError();
-    console.error(err);
     return (
         <main className="page-not-found">
             <div className="page-not-found__illustration" aria-hidden="true">
