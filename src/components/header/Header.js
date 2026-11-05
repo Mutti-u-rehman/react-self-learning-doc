@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Header.scss";
 
 const Header = () => {
@@ -9,12 +10,11 @@ const Header = () => {
                 </a>
 
                 <nav className="nav-items" aria-label="Main navigation">
-                    <a className="nav-link" href="#restaurants">Discover</a>
-                    <a className="nav-link nav-link--about" href="/about">Our story</a>
-                    <a className="nav-link nav-link--partners" href="#restaurants">For restaurants</a>
-                    <a className="nav-link" href="/contact">Contact</a>
-                    <a className="nav-link" href="/about">About</a>
-                    <a className="header-action" href="#restaurants">Start exploring</a>
+                    <Link className="nav-link" to="/restaurants">Discover</Link>
+                    <Link className="nav-link" to="/about">Our story</Link>
+                    <Link className="nav-link" to="/for-restaurants">For restaurants</Link>
+                    <Link className="nav-link" to="/contact">Contact</Link>
+                    <Link className="nav-link" to="/about">About</Link>
                 </nav>
             </div>
         </header>
