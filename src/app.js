@@ -7,7 +7,7 @@ import Footer from './components/footer/Footer';
 import ContactUs from './components/contactUs/ContactUs';
 import AboutUs from './components/aboutUs/AboutUs';
 import PageNotFound from './components/pageNotFound/PageNotFound';
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 
 const AppLayout = () => {
     return (
@@ -19,20 +19,19 @@ const AppLayout = () => {
     );
 }
 
-const AppRoutes = () => {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route element={<AppLayout />}>
-                    <Route path="/" element={<Body />} />
-                    <Route path="/about" element={<AboutUs />} />
-                    <Route path="/contact" element={<ContactUs />} />
-                    <Route path="*" element={<PageNotFound />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    );
-};
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <AppLayout />,
+        errorElement: <PageNotFound />,
+        children: [
+            { index: true, element: <Body /> },
+            { path: "about", element: <AboutUs /> },
+            { path: "contact", element: <ContactUs /> },
+            { path: "*", element: <PageNotFound /> },
+        ],
+    },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<AppRoutes />);
+root.render(<RouterProvider router={router} />);
