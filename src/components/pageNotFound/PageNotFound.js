@@ -1,6 +1,12 @@
 import "./PageNotFound.scss";
+import { useLocation } from "react-router-dom";
 
 const PageNotFound = () => {
+
+    const location = useLocation();
+
+    console.log("Current location:", location);
+    console.log("Requested path:", location.pathname);
     return (
         <main className="page-not-found">
             <div className="page-not-found__illustration" aria-hidden="true">
