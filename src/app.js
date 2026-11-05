@@ -6,6 +6,7 @@ import Body from './components/body/Body';
 import Footer from './components/footer/Footer';
 import ContactUs from './components/contactUs/ContactUs';
 import AboutUs from './components/aboutUs/AboutUs';
+import PageNotFound from './components/pageNotFound/PageNotFound';
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 
 const AppLayout = () => {
@@ -26,7 +27,7 @@ const AppRoutes = () => {
                     <Route path="/" element={<Body />} />
                     <Route path="/about" element={<AboutUs />} />
                     <Route path="/contact" element={<ContactUs />} />
-                    <Route path="*" element={<Body />} />
+                    <Route path="*" element={<PageNotFound />} />
                 </Route>
             </Routes>
         </BrowserRouter>
